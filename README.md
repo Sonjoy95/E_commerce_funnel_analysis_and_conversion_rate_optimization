@@ -74,3 +74,54 @@ The project recommends halting generic optimization efforts and launching a targ
 * **A/B Test Focus:** Create a new page template based on the Blueprint Study and immediately deploy an **A/B Test** on the product pages of the **Bottom 10 Brands** (e.g., `hammer`, `lexmark`).
 
 **Goal:** The A/B test aims to achieve a statistically significant increase in the V $\rightarrow$ C conversion rate for the bottom-performing segments, driving the site's overall conversion rate closer to industry benchmarks.
+
+## 💻 How to Run This Project Locally
+
+Follow these steps to set up the project environment, ingest the data, and reproduce the analysis:
+
+### Prerequisites
+
+* **PostgreSQL Database:** A running PostgreSQL instance (Version 10+) is required.
+* **Python:** Version **3.13** (or compatible version, specific python version used 3.13.5).
+* **Kaggle Dataset:** Access to the "E-commerce events history in electronics store" dataset (You will need to download the CSV file).
+
+---
+
+### 1. Environment Setup
+
+Create and activate a dedicated Python virtual environment to manage dependencies:
+
+```bash
+# Create the virtual environment (if you have multiple versions of python with py launcher)
+py -3.13 -m venv venv_funnel
+
+# Activate the environment (Linux/macOS)
+source venv_funnel/bin/activate
+
+# Activate the environment (Windows)
+.\venv_funnel\Scripts\activate
+```
+
+### 2. Install Dependancies
+Install all necessary libraries, including the database connector (`psycopg2`) and the data science tools:
+```bash
+pip install pandas==2.3.3 sqlalchemy==2.0.44 psycopg2-binary==7.9.11 matplotlib==3.10.7 seaborn==0.13.2 scipy==1.16.3
+```
+
+### 3. Database Configuration
+Before running the analysis, you must configure your database connection:
+
+- **Create Database:** Create an empty database in PostgreSQL named `Funnel Analysis` (or the name you used).
+
+- **Update Notebook:** Open the Jupyter Notebook (Ecommerce_Funnel_Analysis.ipynb) and update the Database Connection Details cell with your correct credentials (`db_user`, `db_pass`, `db_host`, etc.).
+
+### 4. Execute Analysis
+Run the Jupyter Notebook sequentially from start to finish. The notebook performs the following key actions:
+
+1. **Ingestion:** Connects to PostgreSQL and ingests the raw event data into the `raw_user_events` table.
+
+2. **SQL Feature Engineering:** Runs the two primary SQL queries (`creating funnel_events` and `funnel_user_counts`).
+
+3. **Deeper Dive SQL:** Runs the secondary CTE query to create the `brand_vc_performance` table.
+
+4. **Visualization:** Generates all final charts and the project's actionable recommendations.
