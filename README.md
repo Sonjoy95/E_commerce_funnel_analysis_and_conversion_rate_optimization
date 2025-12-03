@@ -75,13 +75,15 @@ The project recommends halting generic optimization efforts and launching a targ
 
 **Goal:** The A/B test aims to achieve a statistically significant increase in the V $\rightarrow$ C conversion rate for the bottom-performing segments, driving the site's overall conversion rate closer to industry benchmarks.
 
+---
+
 ## 💻 How to Run This Project Locally
 
 Follow these steps to set up the project environment, ingest the data, and reproduce the analysis:
 
 ### Prerequisites
 
-* **PostgreSQL Database:** A running PostgreSQL instance (Version 10+) is required.
+* **PostgreSQL Database:** A running PostgreSQL instance (specific version 18.1) is required.
 * **Python:** Version **3.13** (or compatible version, specific python version used 3.13.5).
 * **Kaggle Dataset:** Access to the "E-commerce events history in electronics store" dataset (You will need to download the CSV file).
 
@@ -125,3 +127,5 @@ Run the Jupyter Notebook sequentially from start to finish. The notebook perform
 3. **Deeper Dive SQL:** Runs the secondary CTE query to create the `brand_vc_performance` table.
 
 4. **Visualization:** Generates all final charts and the project's actionable recommendations.
+
+---
